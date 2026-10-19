@@ -1357,7 +1357,7 @@ export function registerFlowEdgeDirective(Alpine: Alpine) {
           // Read zoom/viewport from the raw object to avoid creating a reactive
           // dependency on viewport.zoom.  Edge paths are in flow-space and
           // scale via CSS transform — they don't need recomputation on zoom.
-          const rawViewport = Alpine.raw(canvas).viewport ?? { x: 0, y: 0, zoom: 1 };
+          const rawViewport = Alpine.raw(canvas.viewport) ?? { x: 0, y: 0, zoom: 1 };
           const zoom = rawViewport.zoom || 1;
 
           // Track rotation so edges re-render when nodes rotate.

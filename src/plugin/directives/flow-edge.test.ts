@@ -617,6 +617,21 @@ describe('x-flow-edge zoom LOD (WS-D)', () => {
     expect(counts.count()).toBe(0);
     counts.disconnect();
   });
+
+  it('panning and zooming the viewport does NOT re-run the edge effect', async () => {
+    const { data, groups, visiblePath } = mountEdges(flatNodes(), [
+      { id: 'e1', source: 'a', target: 'b' },
+    ], { nodeElements: true });
+    await flush();
+
+    const counts = observePathD(visiblePath(groups[0]));
+    data.viewport.x = 120;
+    data.viewport.y = -40;
+    data.viewport.zoom = 1.5;
+    await flush();
+    expect(counts.count()).toBe(0);
+    counts.disconnect();
+  });
 });
 
 describe('x-flow-edge label path-length caching (Task B1)', () => {
