@@ -617,7 +617,9 @@ describe('x-flow-edge zoom LOD (WS-D)', () => {
     expect(counts.count()).toBe(0);
     counts.disconnect();
   });
+});
 
+describe('x-flow-edge viewport reactivity', () => {
   it('panning and zooming the viewport does NOT re-run the edge effect', async () => {
     const { data, groups, visiblePath } = mountEdges(flatNodes(), [
       { id: 'e1', source: 'a', target: 'b' },
